@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and fill in real values (never commit the real one!)
+
+environment    = "demo"
+cidr_prefix    = "10.100"
+
+aws_region     = "us-east-1"
+azure_location = "eastus"
+gcp_region     = "us-central1"
+gcp_project_id = "your-project-123456"   # ← CHANGE THIS
