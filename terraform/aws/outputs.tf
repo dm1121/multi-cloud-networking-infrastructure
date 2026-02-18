@@ -17,10 +17,20 @@ output "aws_vpc_cidr_block" {
 
 output "aws_public_subnet_id" {
   description = "ID of the public subnet"
-  value       = aws_subnet.public.id   # adjust name if your subnet resource is named differently
+  value       = aws_subnet.public.id
 }
 
 output "aws_public_subnet_cidr" {
   description = "CIDR block of the public subnet"
   value       = aws_subnet.public.cidr_block
+}
+
+output "aws_subnet_availability_zone" {
+  description = "Availability Zone where the public subnet is created"
+  value       = aws_subnet.public.availability_zone
+}
+
+output "aws_public_subnet_map_public_ip" {
+  description = "Whether instances get public IPs by default in this subnet"
+  value       = aws_subnet.public.map_public_ip_on_launch
 }
