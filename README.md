@@ -1,32 +1,32 @@
+```text
 multi-cloud-networking-infrastructure/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
 ├── .github/
 │   └── workflows/
-│       └── terraform.yml          # Optional GitHub Actions for plan/validate
+│       └── terraform.yml           # GitHub Actions (fmt, validate, plan)
 ├── terraform/
-│   ├── providers.tf               # Provider configurations
+│   ├── providers.tf
 │   ├── variables.tf
 │   ├── terraform.tfvars.example
 │   ├── outputs.tf
-│   ├── main.tf                    # Or split into: networking.tf, peering.tf, etc.
+│   ├── main.tf                     # optional central entry, or remove if using subdirs only
 │   ├── aws/
 │   │   ├── vpc.tf
 │   │   ├── subnets.tf
-│   │   ├── peering.tf             # (optional - direct peering or transit)
+│   │   ├── vpn.tf                  # for hub model
 │   │   └── outputs.tf
 │   ├── azure/
 │   │   ├── vnet.tf
 │   │   ├── subnets.tf
-│   │   ├── peering.tf
+│   │   ├── vpn.tf
 │   │   └── outputs.tf
 │   ├── gcp/
 │   │   ├── vpc.tf
 │   │   ├── subnets.tf
 │   │   └── outputs.tf
-│   └── modules/                   # (future - reusable modules)
-│       └── transit-gateway/       # example placeholder
+│   └── modules/                    # reusable later (e.g. vpc-module)
 └── docs/
-    └── diagrams/                  # Put draw.io / excalidraw files here
-        └── architecture.drawio
+    └── diagrams/
+        └── architecture.drawio     # add a simple diagram!
