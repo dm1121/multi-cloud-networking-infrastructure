@@ -30,3 +30,7 @@ output "azure_public_subnet_prefix" {
   description = "Address prefix of the public subnet"
   value       = azurerm_subnet.public.address_prefixes[0]
 }
+output "azure_demo_nsg_id" {
+  description = "ID of the demo Network Security Group"
+  value       = azurerm_network_security_group.demo_public.id
+}
