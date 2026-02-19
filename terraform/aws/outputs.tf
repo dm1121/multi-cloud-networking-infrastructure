@@ -1,4 +1,5 @@
 # terraform/aws/outputs.tf
+# Outputs for AWS networking resources - useful for verification and cross-cloud references later
 
 output "aws_region_used" {
   description = "The AWS region configured for this deployment"
@@ -33,4 +34,10 @@ output "aws_subnet_availability_zone" {
 output "aws_public_subnet_map_public_ip" {
   description = "Whether instances get public IPs by default in this subnet"
   value       = aws_subnet.public.map_public_ip_on_launch
+}
+
+# Optional - add this if you already have the Internet Gateway in vpc.tf
+output "aws_internet_gateway_id" {
+  description = "ID of the Internet Gateway attached to the VPC"
+  value       = aws_internet_gateway.igw.id
 }
