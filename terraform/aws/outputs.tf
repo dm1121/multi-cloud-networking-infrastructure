@@ -37,3 +37,41 @@ output "aws_internet_gateway_id" {
   description = "ID of the Internet Gateway attached to the VPC"
   value       = aws_internet_gateway.igw.id
 }
+# ──────────────────────────────────────────────────────────────
+# Basic demo security group: SSH + ICMP inbound, all outbound
+# WARNING: very permissive – only for learning/demo environment
+# ──────────────────────────────────────────────────────────────
+
+resource "aws_security_group" "demo_public" {
+  name        = "${var.environment}-aws-demo-public-sg"
+  description = "Demo: SSH + ICMP inbound from anywhere, all outbound"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "SSH from anywhere (demo only)"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "ICMP (ping) from anywhere (demo only)"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.environment}-aws-demo-sg"
+    Environment = var.environment
+  }
+}
